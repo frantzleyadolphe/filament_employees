@@ -18,6 +18,7 @@ class CityResource extends Resource
     protected static ?string $model = City::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = 'EMPLOYEES MANAGEMENT';
 
     public static function form(Form $form): Form
     {
@@ -43,14 +44,14 @@ class CityResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -58,5 +59,5 @@ class CityResource extends Resource
             'create' => Pages\CreateCity::route('/create'),
             'edit' => Pages\EditCity::route('/{record}/edit'),
         ];
-    }    
+    }
 }

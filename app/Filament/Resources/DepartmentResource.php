@@ -18,6 +18,7 @@ class DepartmentResource extends Resource
     protected static ?string $model = Department::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = 'EMPLOYEES MANAGEMENT';
 
     public static function form(Form $form): Form
     {
@@ -43,14 +44,14 @@ class DepartmentResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -58,5 +59,5 @@ class DepartmentResource extends Resource
             'create' => Pages\CreateDepartment::route('/create'),
             'edit' => Pages\EditDepartment::route('/{record}/edit'),
         ];
-    }    
+    }
 }
