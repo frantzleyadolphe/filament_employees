@@ -2,16 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CityResource\Pages;
-use App\Filament\Resources\CityResource\RelationManagers;
-use App\Models\City;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use App\Models\City;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\CityResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\CityResource\RelationManagers;
 
 class CityResource extends Resource
 {
@@ -24,7 +28,12 @@ class CityResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Card::make()
+                    ->schema([
+                        Select::make('state_id')
+                            ->relationship('state', 'name'),
+                        TextInput::make('name')
+                    ])
             ]);
     }
 
@@ -32,7 +41,9 @@ class CityResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('state.name')->searchable(),
+                TextColumn::make('name')->limit(20)->searchable(),
+                TextColumn::make('created_at')
             ])
             ->filters([
                 //

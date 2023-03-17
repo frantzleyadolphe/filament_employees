@@ -2,16 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StateResource\Pages;
-use App\Filament\Resources\StateResource\RelationManagers;
-use App\Models\State;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use App\Models\State;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\StateResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\StateResource\RelationManagers;
 
 class StateResource extends Resource
 {
@@ -24,7 +28,12 @@ class StateResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Card::make()
+                    ->schema([
+                        Select::make('country_id')
+                            ->relationship('country', 'name'),
+                        TextInput::make('name')
+                    ])
             ]);
     }
 
@@ -32,7 +41,10 @@ class StateResource extends Resource
     {
         return $table
             ->columns([
-                //
+                //country.name permet mwen fe on affichaj a pati de yon relasyon ak table
+                //contry an pul banm ki non ki gn id ki te seleksyonen an
+                TextColumn::make('country.name')->searchable(),
+                TextColumn::make('name')->limit(20)->searchable(),
             ])
             ->filters([
                 //
