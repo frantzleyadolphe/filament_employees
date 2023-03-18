@@ -22,7 +22,7 @@ class CityResource extends Resource
     protected static ?string $model = City::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map';
-    protected static ?string $navigationGroup = 'EMPLOYEES MANAGEMENT';
+    protected static ?string $navigationGroup = 'SYSTEM MANAGEMENT';
 
     public static function form(Form $form): Form
     {
