@@ -59,7 +59,7 @@ class EmployeeResource extends Resource
                 TextColumn::make('date_hired'),
             ])
             ->filters([
-                //pour filtrer par departement
+                //recherche par filtrer par departement
                 SelectFilter::make('department_id')->relationship('department', 'name')
             ])
             ->actions([
